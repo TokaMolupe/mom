@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Message for Mom</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .heart {
+            font-size: 3rem;
+            color: #e74c3c;
+            margin-bottom: 20px;
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease-in forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .slide-up {
+            transform: translateY(30px);
+            opacity: 0;
+            animation: slideUp 0.8s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-weight: 300;
+        }
+
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #555;
+            text-align: left;
+        }
+
+        .message p {
+            margin-bottom: 15px;
+        }
+
+        .signature {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            font-style: italic;
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .flowers {
+            font-size: 1.5rem;
+            margin: 15px 0;
+            opacity: 0.7;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+        }
+
+        .btn:hover::before {
+            width: 200px;
+            height: 200px;
+        }
+
+        .interactive-btn {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            margin: 5px;
+            padding: 12px 25px;
+            font-size: 0.9rem;
+        }
+
+        .emoji-rain {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+
+        .emoji-drop {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: fall 3s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
+        }
+
+        .pulse {
+            animation: pulse 0.6s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .fun-meter {
+            background: #f0f0f0;
+            border-radius: 10px;
+            height: 20px;
+            margin: 20px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .fun-fill {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            height: 100%;
+            width: 0%;
+            transition: width 2s ease;
+            border-radius: 10px;
+        }
+
+        .tap-hint {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+
+        .hidden {
+            display: none;
+        }
+
+        .photo-frame {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #e74c3c;
+            margin: 0 auto 20px;
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .additional-message {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .sparkle {
+            animation: sparkle 1.5s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="emoji-rain" id="emojiRain"></div>
+
+        <div class="photo-frame fade-in" onclick="shakeHeart()">
+            👩‍❤️‍👨
+        </div>
+
+        <div class="heart fade-in" id="mainHeart" onclick="createHeartBurst()">💝</div>
+
+        <h1 class="slide-up">Dear Mom,</h1>
+
+        <div class="message slide-up">
+            <p>I need to apologize from the bottom of my heart for what I said to you. I was completely out of line, and
+                I'm deeply sorry for my words and actions.</p>
+
+            <p>What I said wasn’t right, and it wasn’t my place to say it. I let my emotions get the better of me, and I
+                ended up hurting someone who means the world to me. I know you’ve always treated us fairly and with
+                respect, and I truly believe you always will. I’m really sorry — I see now that I was wrong, and I take
+                full responsibility for it.</p>
+
+            <p>You didn't deserve to be spoken to that way, especially not by me. I'm ashamed of how I acted.</p>
+        </div>
+
+        <div class="flowers slide-up" onclick="changeFlowers()">🌸 🌺 🌸</div>
+
+        <div class="fun-meter">
+            <div class="fun-fill" id="funFill"></div>
+        </div>
+        <div class="tap-hint">💡 Tap things to interact!</div>
+
+        <div class="additional-message slide-up hidden" id="additional">
+            <p><strong>I hope you can forgive me.</strong> I love you more than words can express, and I promise to do
+                better. You've always been there for me, and I failed to show you the respect and love you deserve.</p>
+
+
+        </div>
+
+        <button class="btn slide-up" onclick="showMore()">Show More</button>
+        <button class="interactive-btn slide-up" onclick="surpriseMe()">Surprise Me! 🎉</button>
+        <button class="interactive-btn slide-up" onclick="sendHugs()">Send Virtual Hugs 🤗</button>
+
+        <div class="signature slide-up">
+            With all my love and deepest regret,<br>
+            <span class="sparkle">Toka ❤️</span>
+        </div>
+    </div>
+
+    <script>
+        let funLevel = 0;
+        let flowerEmojis = ['🌸', '🌺', '🌻', '🌷', '🌹', '🌼', '🌿', '🍀'];
+        let currentFlowerIndex = 0;
+
+        function showMore() {
+            const additional = document.getElementById('additional');
+            const btn = document.querySelector('.btn');
+
+            if (additional.classList.contains('hidden')) {
+                additional.classList.remove('hidden');
+                btn.textContent = 'Hide';
+                additional.style.animation = 'slideUp 0.8s ease-out forwards';
+                increaseFun();
+            } else {
+                additional.classList.add('hidden');
+                btn.textContent = 'Show More';
+            }
+        }
+
+        function shakeHeart() {
+            const heart = document.getElementById('mainHeart');
+            heart.classList.add('shake');
+            setTimeout(() => heart.classList.remove('shake'), 500);
+            increaseFun();
+        }
+
+        function createHeartBurst() {
+            const container = document.querySelector('.container');
+            const hearts = ['💖', '💕', '💗', '💝', '💘', '💞'];
+
+            for (let i = 0; i < 8; i++) {
+                const heart = document.createElement('div');
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.position = 'absolute';
+                heart.style.fontSize = '1.5rem';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = Math.random() * 100 + '%';
+                heart.style.animation = 'pulse 1s ease-out';
+                heart.style.pointerEvents = 'none';
+                heart.style.zIndex = '1000';
+
+                container.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.style.animation = 'fadeOut 1s ease-out';
+                    setTimeout(() => heart.remove(), 1000);
+                }, 1000);
+            }
+            increaseFun();
+        }
+
+        function changeFlowers() {
+            const flowers = document.querySelector('.flowers');
+            currentFlowerIndex = (currentFlowerIndex + 1) % flowerEmojis.length;
+            const emoji = flowerEmojis[currentFlowerIndex];
+            flowers.innerHTML = `${emoji} ${emoji} ${emoji}`;
+            flowers.classList.add('pulse');
+            setTimeout(() => flowers.classList.remove('pulse'), 600);
+            increaseFun();
+        }
+
+        function surpriseMe() {
+            const surprises = [
+                () => createEmojiRain(['🎉', '🎊', '✨', '🌟']),
+                () => changeBackgroundColor(),
+                () => createFloatingMessages(),
+                () => spinContainer()
+            ];
+
+            const randomSurprise = surprises[Math.floor(Math.random() * surprises.length)];
+            randomSurprise();
+            increaseFun();
+        }
+
+        function sendHugs() {
+            createEmojiRain(['🤗', '🫂', '💙', '💚', '💜']);
+            increaseFun();
+        }
+
+        function createEmojiRain(emojis) {
+            const rain = document.getElementById('emojiRain');
+
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const emoji = document.createElement('div');
+                    emoji.className = 'emoji-drop';
+                    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    emoji.style.left = Math.random() * 100 + '%';
+                    emoji.style.animationDelay = Math.random() * 2 + 's';
+                    rain.appendChild(emoji);
+
+                    setTimeout(() => emoji.remove(), 3000);
+                }, i * 100);
+            }
+        }
+
+        function changeBackgroundColor() {
+            const body = document.body;
+            const colors = [
+                'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+                'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+                'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
+            ];
+
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            body.style.background = randomColor;
+
+            setTimeout(() => {
+                body.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            }, 3000);
+        }
+
+        function createFloatingMessages() {
+            const messages = ['I love you! 💕', 'Sorry Mom 😢', 'Forgive me? 🥺', 'You\'re the best! 👑'];
+            const container = document.querySelector('.container');
+
+            messages.forEach((msg, index) => {
+                setTimeout(() => {
+                    const messageEl = document.createElement('div');
+                    messageEl.textContent = msg;
+                    messageEl.style.position = 'absolute';
+                    messageEl.style.background = 'rgba(255, 255, 255, 0.9)';
+                    messageEl.style.padding = '10px 15px';
+                    messageEl.style.borderRadius = '20px';
+                    messageEl.style.fontSize = '0.9rem';
+                    messageEl.style.left = Math.random() * 70 + '%';
+                    messageEl.style.top = Math.random() * 70 + '%';
+                    messageEl.style.animation = 'float 3s ease-in-out';
+                    messageEl.style.pointerEvents = 'none';
+                    messageEl.style.zIndex = '1000';
+                    messageEl.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+
+                    container.appendChild(messageEl);
+
+                    setTimeout(() => messageEl.remove(), 3000);
+                }, index * 500);
+            });
+        }
+
+        function spinContainer() {
+            const container = document.querySelector('.container');
+            container.style.transform = 'rotate(360deg)';
+            container.style.transition = 'transform 1s ease-in-out';
+
+            setTimeout(() => {
+                container.style.transform = 'rotate(0deg)';
+            }, 1000);
+        }
+
+        function increaseFun() {
+            funLevel = Math.min(funLevel + 10, 100);
+            document.getElementById('funFill').style.width = funLevel + '%';
+
+            if (funLevel >= 100) {
+                setTimeout(() => {
+                    alert('🎉 Maximum fun achieved! Your mom will love this! 💕');
+                }, 500);
+            }
+        }
+
+        // Add CSS for new animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+                50% { transform: translateY(-20px) rotate(180deg); opacity: 0.8; }
+                100% { transform: translateY(-40px) rotate(360deg); opacity: 0; }
+            }
+            
+            @keyframes fadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add gentle floating animation to heart
+        document.addEventListener('DOMContentLoaded', function () {
+            const heart = document.querySelector('.heart');
+            let direction = 1;
+
+            setInterval(() => {
+                heart.style.transform = `translateY(${direction * 5}px)`;
+                direction *= -1;
+            }, 2000);
+        });
+
+        // Add staggered animation delays
+        document.addEventListener('DOMContentLoaded', function () {
+            const slideUpElements = document.querySelectorAll('.slide-up');
+            slideUpElements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.2}s`;
+            });
+        });
+    </script>
+</body>
+
+</html>
